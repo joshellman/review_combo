@@ -1,9 +1,30 @@
-<h2><%= @movie.title %></h2>
-<p><%= @movie.description %></p>
-<h5>Category: <%= @movie.category.name %></h5>
-<h5><%= @movie.director %></h5>
-<p><%= @movie.length %></p>
-<p><%= @movie.rating %></p>
+<div class="row">
+
+  <div class="col-md-4">
+
+    <%= image_tag @movie.movie_img.url(:movie_show), class: "movie-show" %>
+
+  </div>
+
+  <div class="col-md-8">
+    <h2><%= @movie.title %></h2>
+    <p><%= @movie.description %></p>
+    <h5><%= @movie.director %></h5>
+    <h5><%= @movie.length %></h5>
+    <h5><%= @movie.rating %></h5>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-4">
+
+    <!-- Where the reviews & ratings will go -->
+
+  </div>
+
+</div>
 
 <%= link_to "Movies", root_path %>
 
