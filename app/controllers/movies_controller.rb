@@ -2,8 +2,13 @@ class MoviesController < ApplicationController
   before_action :find_movie, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.all.order("title ASC")
+    if params[:category].blank?
+      @movies = Movie.all.order("title ASC")
     # created_at DESC
+    else
+    @category_id = Category.find_by(name: params[:category]).id
+    @movies = Movie.where(:category_id => @category_id).order("title ASC")
+    end
   end
 
   def show
@@ -11,10 +16,12 @@ class MoviesController < ApplicationController
 
   def new
     @movie = current_user.movies.build
+    @categories =  Category.all.map{ |c| [c.name, c.id] }
   end
 
   def create
     @movie = current_user.movies.build(movie_params)
+    @movie.category_id = params[:category_id]
 
     if @movie.save
       redirect_to root_path
@@ -24,9 +31,11 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    @categories =  Category.all.map{ |c| [c.name, c.id] }
   end
 
   def update
+      @movie.category_id = params[:category_id]
     if @movie.update(movie_params)
       redirect_to movie_path(@movie)
     else
@@ -43,7 +52,7 @@ class MoviesController < ApplicationController
   private
 
     def movie_params
-      params.require(:movie).permit(:title, :description, :director, :length, :rating)
+      params.require(:movie).permit(:title, :description, :director, :length, :rating, :category_id)
     end
 
     def find_movie
