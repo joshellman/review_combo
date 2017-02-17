@@ -7,9 +7,10 @@
   </div>
 
   <div class="col-md-8">
-    <h2><%= @movie.title %></h2>
-    <h2>Average Rating</h2>
-    <div class="average-review-rating" data-score=<%= @average_review %></div>
+    <h1><%= @movie.title %></h1>
+    <h2><i>Combo Score:</i></h2>
+    <div class="average-review-rating" data-score=<%= @average_review %>></div><br>
+    <span class="number-of-reviews"><%= @movie.reviews.count %><i> Total Reviews</i></span>
     <p><%= @movie.description %></p>
     <h5><%= @movie.director %></h5>
     <h5><%= @movie.length %></h5>
