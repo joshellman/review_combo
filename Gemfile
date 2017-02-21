@@ -1,12 +1,17 @@
 source 'https://rubygems.org'
 
+#hide environment variables
+gem 'dotenv-rails', group: :development, require: 'dotenv/rails-now'
+#photo uploads
+gem 'paperclip', '~> 5.1'
+gem 'aws-sdk'
 gem 'rails', '4.2.6'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form', '~> 3.4'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'devise', '~> 4.2'
-gem 'paperclip', '~> 5.1'
+
 gem 'worth_watching'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
